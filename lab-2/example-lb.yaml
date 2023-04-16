@@ -1,0 +1,37 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: devops-app
+  labels:
+    app: http-echo
+spec:
+  containers:
+  - name: devops-app
+    image: hashicorp/http-echo:0.2.3
+    args:
+    - "-text=Hello devops!"
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: kind-app
+  labels:
+    app: http-echo
+spec:
+  containers:
+  - name: kind-app
+    image: hashicorp/http-echo:0.2.3
+    args:
+    - "-text=Hello kind!"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: lb-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: http-echo
+  ports:
+  # Default port used by the image
+  - port: 5678
