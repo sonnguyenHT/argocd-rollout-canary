@@ -1,0 +1,17 @@
+replicaCount: 2
+image:
+  repository: hashicorp/http-echo
+  tag: 0.2.3
+  pullPolicy: IfNotPresent
+
+service:
+  type: LoadBalancer
+  port: 5678
+
+ingress:
+  enabled: true
+  annotations: {}
+  path: /
+  pathType: Prefix
+  hosts:
+    - echo.kind.cluster
