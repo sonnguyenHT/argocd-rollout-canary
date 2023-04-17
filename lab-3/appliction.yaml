@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: devops-app
+spec:
+  project: default
+  source:
+    helm:
+      chart: devops-app-chart
+      valueFiles:
+        - values.yaml
+      repoURL: https://github.com/<your GitHub username>/app-chart.git
+      targetRevision: main
+    kustomize: {}
+    directory:
+      recurse: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
