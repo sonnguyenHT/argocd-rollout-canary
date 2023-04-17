@@ -1,6 +1,19 @@
-apiVersion: v2
-name: devops-app-chart
-description: A Helm chart for deploying HTTP Echo to Kubernetes
-type: application
-version: 0.1.0
-appVersion: 0.2.3
+{{- if .Values.ingress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "devops-app-chart.fullname" . }}-ingress
+  annotations: {{ .Values.ingress.annotations | toYaml | nindent 4 }}
+spec:
+  rules:
+    - host: {{ .Values.ingress.hosts | first }}
+      http:
+        paths:
+          - path: {{ .Values.ingress.path }}
+            pathType: {{ .Values.ingress.pathType }}
+            backend:
+              service:
+                name: {{ include "devops-app-chart.fullname" . }}
+                port:
+                  name: http
+{{- end }}
