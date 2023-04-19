@@ -18,9 +18,15 @@ spec:
         automated:
           prune: true
           selfHeal: true
-      source:
-        repoURL: https://github.com/AndreCbrera/argocd-labs.git
+      sources:
+      - repoURL: 'https://prometheus-community.github.io/helm-charts'
+        chart: devops-app-chart
+        targetRevision:  0.1.0
+        helm:
+          valueFiles:
+          - $values/lab-3/applicationset/overlays/app1/{{app.overlay}}
+      - repoURL: https://github.com/AndreCbrera/argocd-labs.git
         targetRevision: main
-        path: lab-3/applicationset/overlays/{{app.overlay}}
+        ref: values
       destination:
         server: https://kubernetes.default.svc

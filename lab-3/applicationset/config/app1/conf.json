@@ -1,7 +1,7 @@
 {
     "app": {
       "name": "app1",
-      "overlay": "app1"
+      "overlay": "values-app1.yaml"
     }
   }
   
