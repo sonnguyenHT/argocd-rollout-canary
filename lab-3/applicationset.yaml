@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: gitops-app
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/AndreCbrera/argocd-labs.git
+      revision: main
+      files:
+      - path: "lab-3/applicationset/config/**/conf.json"
+  template:
+    metadata:
+      name: '{{app.name}}-gitops'
+    spec:
+      project: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+      source:
+        repoURL: https://github.com/AndreCbrera/argocd-labs.git
+        targetRevision: main
+        path: lab-3/applicationset/overlays/{{app.overlay}}
+      destination:
+        server: {}
