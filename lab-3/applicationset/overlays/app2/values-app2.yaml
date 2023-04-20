@@ -4,6 +4,8 @@ image:
   tag: 0.2.3
   pullPolicy: IfNotPresent
 
+namespace: app2
+
 service:
   type: LoadBalancer
   port: 5678

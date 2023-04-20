@@ -4,6 +4,8 @@ image:
   tag: 0.2.3
   pullPolicy: IfNotPresent
 
+namespace: app1
+
 service:
   type: LoadBalancer
   port: 5678
@@ -15,29 +17,3 @@ ingress:
   pathType: Prefix
   hosts:
     - app1.kind.cluster
-
-text: "echo test"
-
-
-service:
-  main:
-    ports:
-      http:
-        port: 5678
-
-ingress:
-  main:
-    enabled: true
-    annotations:
-      nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    hosts:
-      - host: example.com
-        paths:
-          - path: /app
-            backend:
-              serviceName: my-service
-              servicePort: 80
-    tls:
-      - secretName: example-tls-secret
-        hosts:
-          - example.com
