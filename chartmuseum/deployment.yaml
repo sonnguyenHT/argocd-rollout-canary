@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chartmuseum
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chartmuseum
+  template:
+    metadata:
+      labels:
+        app: chartmuseum
+    spec:
+      containers:
+      - name: chartmuseum
+        image: bitnami/chartmuseum
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: chartmuseum-config
+          mountPath: /etc/chartmuseum/config.yaml
+          subPath: config.yaml
+        - name: chartmuseum-charts
+          mountPath: /charts
+      volumes:
+      - name: chartmuseum-config
+        secret:
+          secretName: chartmuseum-config
+      - name: chartmuseum-charts
+        persistentVolumeClaim:
+          claimName: chartmuseum-pvc
