@@ -18,6 +18,8 @@ spec:
         automated:
           prune: true
           selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
       sources:
       - repoURL: 'http://172.18.255.201/'
         chart: devops-app-chart
