@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "devops-app-chart.fullname" . }}
+  namespace: {{ include "devops-app-chart.fullname" . }}
   labels:
     app: http-echo
 spec:

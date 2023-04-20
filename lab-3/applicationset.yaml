@@ -19,12 +19,12 @@ spec:
           prune: true
           selfHeal: true
       sources:
-      - repoURL: 'http://chartmuseum.kind.cluster'
+      - repoURL: 'http://172.18.255.201/'
         chart: devops-app-chart
-        targetRevision:  0.1.0
+        targetRevision:  0.2.0
         helm:
           valueFiles:
-          - $values/lab-3/applicationset/overlays/app1/{{app.overlay}}
+          - $values/lab-3/applicationset/overlays/**/{{app.overlay}}
       - repoURL: https://github.com/AndreCbrera/argocd-labs.git
         targetRevision: main
         ref: values
