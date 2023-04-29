@@ -8,9 +8,9 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    repoURL: https://github.com/AndreCbrera/argocd-labs.git
-    path: lab-3/app-chart
-    targetRevision: main
+    repoURL: http://chartmuseum.chartmuseum.svc.cluster.local
+    chart: devops-app-chart
+    targetRevision: 0.5.0
   syncPolicy:
     automated:
       prune: true

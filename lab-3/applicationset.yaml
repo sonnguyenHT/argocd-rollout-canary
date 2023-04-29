@@ -21,9 +21,9 @@ spec:
         syncOptions:
         - CreateNamespace=true
       sources:
-      - repoURL: 'http://172.18.255.201/'
+      - repoURL: 'chartmuseum.charts'
         chart: devops-app-chart
-        targetRevision:  0.3.0
+        targetRevision:  0.4.0
         helm:
           valueFiles:
           - $values/lab-3/applicationset/overlays/{{app.name}}/{{app.overlay}}
