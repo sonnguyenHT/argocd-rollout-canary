@@ -4,6 +4,7 @@ metadata:
   name: chartmuseum-ingress
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
   - host: chartmuseum.kind.cluster
