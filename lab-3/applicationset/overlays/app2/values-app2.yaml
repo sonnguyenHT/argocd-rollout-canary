@@ -7,7 +7,7 @@ image:
 namespace: app2
 
 service:
-  type: LoadBalancer
+  type: ClusterIP
   port: 5678
 
 ingress:
