@@ -1,3 +1,5 @@
-ngress:
+namespace: app2
+
+ingress:
   hosts:
     - app2.kind.cluster
