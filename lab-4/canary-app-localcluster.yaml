@@ -6,8 +6,8 @@ metadata:
 spec:
   project: default
   source:
-    path: argo-rollouts/canary/overlays/localhost
-    repoURL: 'https://github.com/christianh814/gitops-examples'
+    path: lab-4/canary/overlay/localhost
+    repoURL: 'https://github.com/AndreCbrera/argocd-labs.git'
     targetRevision: main
   destination:
     namespace: canary
