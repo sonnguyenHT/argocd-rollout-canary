@@ -3,7 +3,7 @@ kind: Rollout
 metadata:
   name: rollouts-demo
 spec:
-  replicas: 10
+  replicas: 3
   revisionHistoryLimit: 1
   minReadySeconds: 5
   selector:
@@ -26,13 +26,17 @@ spec:
     canary:
       canaryService: rollouts-demo-canary
       stableService: rollouts-demo-stable
+      steps:
+      - setWeight: 30
+        pause: {}
+      - setWeight: 60
+        pause: {}
+      - setWeight: 100
       trafficRouting:
         nginx:
           stableIngress: rollouts-demo-stable
-      steps: # These are indefinate pauses, you can do 'pause: { duration: 10s }' for ten seconds to 10m for ten minutes
-      - setWeight: 30
-      - pause: {}
-      - setWeight: 60
-      - pause: {}
-      - setWeight: 100
-      - pause: {}
+          trafficSplit:
+          - percent: 70
+            name: rollouts-demo-stable
+          - percent: 30
+            name: rollouts-demo-canary
