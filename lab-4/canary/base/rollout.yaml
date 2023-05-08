@@ -3,9 +3,27 @@ kind: Rollout
 metadata:
   name: rollouts-demo
 spec:
-  replicas: 3
-  revisionHistoryLimit: 1
-  minReadySeconds: 5
+  replicas: 5
+  strategy:
+    canary:
+      steps:
+      - setWeight: 20
+      - pause: {}
+      - setWeight: 40
+      - pause: {duration: 10}
+      - setWeight: 60
+      - pause: {duration: 10}
+      - setWeight: 80
+      - pause: {duration: 10}
+      trafficRouting:
+        nginx:
+          stableIngress: rollouts-demo-stable
+          trafficSplit:
+          - name: rollouts-demo-stable
+            percent: 50
+          - name: rollouts-demo-canary
+            percent: 50
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: rollouts-demo
@@ -17,26 +35,11 @@ spec:
       containers:
       - name: rollouts-demo
         image: argoproj/rollouts-demo:blue
-        imagePullPolicy: IfNotPresent
         ports:
         - name: http
           containerPort: 8080
           protocol: TCP
-  strategy:
-    canary:
-      canaryService: rollouts-demo-canary
-      stableService: rollouts-demo-stable
-      steps:
-      - setWeight: 30
-        pause: {}
-      - setWeight: 60
-        pause: {}
-      - setWeight: 100
-      trafficRouting:
-        nginx:
-          stableIngress: rollouts-demo-stable
-          trafficSplit:
-          - percent: 70
-            name: rollouts-demo-stable
-          - percent: 30
-            name: rollouts-demo-canary
+        resources:
+          requests:
+            memory: 32Mi
+            cpu: 5m
