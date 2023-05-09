@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    path: lab-4/canary/overlay/localhost
+    path: lab-4/canary/
     repoURL: 'https://github.com/AndreCbrera/argocd-labs.git'
     targetRevision: main
   destination:
