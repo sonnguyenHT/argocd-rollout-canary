@@ -6,7 +6,6 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
   name: rollouts-demo-stable
 spec:
-  ingressClassName: nginx
   rules:
   - host: rollouts-canary.kind.cluster
     http:
