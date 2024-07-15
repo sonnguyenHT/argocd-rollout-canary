@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
       - name: rollouts-demo
-        image: nginx:stable-perl
+        image: nginx:stable-bookworm-perl
         ports:
         - name: http
           containerPort: 8080
