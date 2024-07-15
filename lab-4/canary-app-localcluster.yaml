@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     path: lab-4/canary/
-    repoURL: 'https://github.com/AndreCbrera/argocd-labs.git'
+    repoURL: 'https://github.com/sonnguyenHT/argocd-rollout-canary.git'
     targetRevision: main
   destination:
     namespace: canary
