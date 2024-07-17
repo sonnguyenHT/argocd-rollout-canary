@@ -43,3 +43,8 @@ spec:
           requests:
             memory: 32Mi
             cpu: 5m
+        livenessProbe:
+          initialDelaySeconds: 10
+          httpGet:
+            path: "/"
+            port: 80
