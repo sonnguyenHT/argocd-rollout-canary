@@ -9,10 +9,10 @@ spec:
       trafficRouting:
         istio:
           virtualService: 
-          name: demo
-          routes:
-            - primaryWeight: 80
-              canaryWeight: 20
+            name: demo
+            routes:
+              - primaryWeight: 80
+                canaryWeight: 20
           destinationRule:
             name: demo
             canarySubsetName: canary
