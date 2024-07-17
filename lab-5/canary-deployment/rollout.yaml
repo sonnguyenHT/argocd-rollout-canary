@@ -8,15 +8,12 @@ spec:
     canary:
       trafficRouting:
         istio:
-          virtualService: 
-            name: demo
-            routes:
-              - primaryWeight: 80
-                canaryWeight: 20
+          virtualService:
+            name: demo        # required
           destinationRule:
-            name: demo
-            canarySubsetName: canary
-            stableSubsetName: stable
+            name: demo   # required
+            canarySubsetName: canary  # required
+            stableSubsetName: stable  # required
       steps:
       - setWeight: 20
       - pause: {duration: 10}
