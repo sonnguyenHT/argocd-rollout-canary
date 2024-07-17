@@ -6,6 +6,16 @@ spec:
   replicas: 2
   strategy:
     canary:
+      trafficRouting:
+        istio:
+          virtualService: demo
+          routes:
+            - primaryWeight: 80
+              canaryWeight: 20
+          destinationRule:
+            name: demo
+            canarySubsetName: canary
+            stableSubsetName: stable
       steps:
       - setWeight: 20
       - pause: {duration: 10}
