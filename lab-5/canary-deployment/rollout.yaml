@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
       - name: demo
-        image: nginx:latest
+        image: sonnguyen129/nginx-web:0.0.1
         ports:
         - name: http
           containerPort: 80
