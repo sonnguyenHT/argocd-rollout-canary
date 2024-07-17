@@ -10,6 +10,8 @@ spec:
         istio:
           virtualService:
             name: demo        # required
+            routes:
+              - primary
           destinationRule:
             name: demo   # required
             canarySubsetName: canary  # required

@@ -27,19 +27,20 @@ spec:
   gateways:
   - demo-gateway
   http:
-  - match:
-    - uri:
-        prefix: /
+  - name: primary
+    # match:
+    # - uri:
+    #     prefix: /
     route:
     - destination:
         host: demo
         port:
           number: 80
         subset: stable
-      weight: 80
+      weight: 100
     - destination:
         host: demo
         port:
           number: 80
         subset: canary
-      weight: 20
+      weight: 0
