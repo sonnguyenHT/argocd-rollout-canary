@@ -3,7 +3,7 @@ kind: Rollout
 metadata:
   name: demo
 spec:
-  replicas: 2
+  replicas: 5
   strategy:
     canary:
       trafficRouting:
@@ -16,13 +16,13 @@ spec:
             stableSubsetName: stable  # required
       steps:
       - setWeight: 20
-      - pause: {duration: 10}
-      - setWeight: 40
-      - pause: {duration: 10}
-      - setWeight: 60
-      - pause: {duration: 10}
-      - setWeight: 80
-      - pause: {duration: }
+      - pause: {}  # pause indefinitely
+      # - setWeight: 40
+      # - pause: {duration: 10}
+      # - setWeight: 60
+      # - pause: {duration: 10}
+      # - setWeight: 80
+      # - pause: {duration: }
   revisionHistoryLimit: 2
   selector:
     matchLabels:
