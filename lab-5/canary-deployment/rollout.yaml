@@ -14,7 +14,7 @@ spec:
               - primary
           destinationRule:
             name: demo   # required
-            # canarySubsetName: canary  # required
+            canarySubsetName: canary  # required
             stableSubsetName: stable  # required
       steps:
       - setWeight: 20
