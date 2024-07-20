@@ -10,28 +10,37 @@ spec:
     istio: ingressgateway # use istio default controller
   servers:
   - port:
-      number: 8080
+      number: 80
       name: http
       protocol: HTTP
     hosts:
-    - "*"
+    - "demo.local"
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: bookinfo
+  name: demo
   namespace: demo
 spec:
   hosts:
-  - "*"
+  - "demo.local"
   gateways:
   - demo-gateway
   http:
-  - match:
-    - uri:
-        prefix: /
+  - name: primary
+    # match:
+    # - uri:
+    #     prefix: /
     route:
     - destination:
         host: demo
         port:
           number: 80
+        subset: stable
+      weight: 100
+    - destination:
+        host: demo
+        port:
+          number: 80
+        subset: canary
+      weight: 0
