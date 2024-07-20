@@ -38,10 +38,10 @@ spec:
         port:
           number: 80
         subset: stable
-      weight: 95
+      weight: 50
     - destination:
         host: demo
         port:
           number: 80
         subset: canary
-      weight: 5
+      weight: 50
