@@ -16,11 +16,11 @@ spec:
             name: demo   # required
             canarySubsetName: canary  # required
             stableSubsetName: stable  # required
-      # steps:
-      # - setWeight: 20
-      # - pause: { duration: 5}  # pause indefinitely
-      # - setWeight: 40
-      # - pause: {}
+      steps:
+      - setWeight: 20
+      - pause: { duration: 5}  # pause indefinitely
+      - setWeight: 40
+      - pause: {}
       # - setWeight: 60
       # - pause: {duration: 10}
       # - setWeight: 80
@@ -36,7 +36,7 @@ spec:
     spec:
       containers:
       - name: demo
-        image: sonnguyen129/nginx-web:0.0.3
+        image: sonnguyen129/nginx-web:0.0.2
         ports:
         - name: http
           containerPort: 80
