@@ -18,7 +18,7 @@ spec:
             stableSubsetName: stable  # required
       steps:
       - setWeight: 100
-      - pause: {}  # pause indefinitely
+      # - pause: {}  # pause indefinitely
       # - setWeight: 40
       # - pause: {duration: 10}
       # - setWeight: 60
