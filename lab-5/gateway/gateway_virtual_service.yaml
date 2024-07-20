@@ -33,13 +33,13 @@ spec:
     #     prefix: /
     route:
     - destination:
-        host: demo
+        host: demo.demo.svc.cluster.local
         port:
           number: 80
         subset: stable
       weight: 50
     - destination:
-        host: demo
+        host: demo.demo.svc.cluster.local
         port:
           number: 80
         subset: canary
